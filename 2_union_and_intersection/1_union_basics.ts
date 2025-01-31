@@ -134,3 +134,5 @@ const personOrCat: PersonCat = {
   braed: "시고르 자브종",
   country: "한국",
 };
+
+// 유니언은 합집합의 개념이다.
