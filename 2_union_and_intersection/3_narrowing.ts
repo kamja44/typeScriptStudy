@@ -75,4 +75,122 @@ interface Human {
   age: number;
 }
 
-inter;
+interface Human {
+  name: string;
+  age: number;
+}
+interface Dog {
+  name: string;
+  type: string;
+}
+
+let human: Human = {
+  name: "안유진",
+  age: 23,
+};
+let dog: Dog = {
+  name: "오리",
+  type: "요크셔테리어",
+};
+
+let humanOrDog: Human | Dog = Math.random() > 0.5 ? human : dog;
+
+console.log("name" in human); // in 키워드를 이용하여 키값의 존재를 알 수 있음
+
+if ("type" in humanOrDog) {
+  humanOrDog; // dog
+} else {
+  humanOrDog; // human
+}
+
+// 6. instanceof narrowing
+let dateOrString: Date | string = Math.random() > 0.5 ? new Date() : "감자";
+
+if (dateOrString instanceof Date) {
+  dateOrString; // date
+} else {
+  dateOrString; // string
+}
+
+// 7. Discriminated Union Narrowing
+interface Animal {
+  type: "dog" | "human";
+  height?: number;
+  // 강아지의 종
+  breed?: string;
+}
+
+let animal: Animal =
+  Math.random() > 0.5
+    ? {
+        type: "human",
+        height: 180,
+      }
+    : {
+        type: "dog",
+        breed: "요크셔 테리어",
+      };
+
+if (animal.type === "human") {
+  animal.height;
+} else {
+  animal.breed;
+  animal.height;
+}
+
+interface Human2 {
+  type: "human";
+  height: number;
+}
+
+interface Dog2 {
+  type: "dog";
+  breed: string;
+}
+
+interface Fish2 {
+  type: "fish";
+  length: number;
+}
+
+type HumanOrDog2 = Human2 | Dog2 | Fish2;
+
+let humanOrDog2: HumanOrDog2 =
+  Math.random() > 0.5
+    ? {
+        type: "human",
+        height: 180,
+      }
+    : Math.random() > 0.5
+    ? {
+        type: "dog",
+        breed: "요크셔테리어",
+      }
+    : {
+        type: "fish",
+        length: 12,
+      };
+
+if (humanOrDog2.type === "human") {
+  humanOrDog2;
+} else {
+  humanOrDog2;
+}
+
+// 8. Exhuastiveness Checking
+switch (humanOrDog2.type) {
+  case "human":
+    humanOrDog2;
+    break;
+  case "dog":
+    humanOrDog2;
+    break;
+  case "fish":
+    humanOrDog2;
+    break;
+  default:
+    humanOrDog2; // human과 dog도 아니니 타입이 들어올 수 없기에 never타입이 됨
+
+    const _check: never = humanOrDog2; // 타입이 추가될 경우 에러발생시킬 수 있음(기존에는 human2, dog2만 있었는데 fish2 추가)
+    break;
+}
