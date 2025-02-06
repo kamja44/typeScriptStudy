@@ -133,3 +133,4 @@ interface IRectangle extends IWidth {
 }
 
 // 둘의 차이점 중 가장 큰 것은 never!!
+// interface의 경우 never로 타입 narrowing이 발생하면 에러 발생
