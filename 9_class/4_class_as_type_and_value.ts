@@ -24,5 +24,4 @@ ori = {
     return `${this.name}가 짖습니다.`;
   },
 };
-
 console.log(ori);
